@@ -8,17 +8,17 @@
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
-var reverseString = function(s) {
+var reverseString = function (s) {
     // solution 1 -------------------
     // s.reverse();
     // ------------------------------
 
     // solution 2 -------------------
     let size = s.length;
-    for(let i = size-2; i >= 0; i--){
+    for (let i = size - 2; i >= 0; i--) {
         s.push(s[i]);
     }
-    for(let i = size-1; i > 0; i--){
+    for (let i = size - 1; i > 0; i--) {
         s.shift();
     }
     // ------------------------------
@@ -41,4 +41,4 @@ let swap = (s, a, b, callback) => {
     callback(s);
 };
 
-reverseString(['a','b','c','d','e']);
+reverseString(['a', 'b', 'c', 'd', 'e']);
