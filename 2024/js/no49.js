@@ -9,10 +9,10 @@ const groupAnagrams = (strs) => {
   const map = {};
   strs.forEach((str, index) => {
     let strArr = str.split('');
-    const strIndexArr = new Array(26);
+    const strIndexArr = new Array(26).fill(0);
     strArr.forEach((s, i) => {
       let sPoint = s.charCodeAt() - 'a'.charCodeAt();
-      strIndexArr[sPoint] = 1;
+      strIndexArr[sPoint]++;
     });
     if (map[strIndexArr]) map[strIndexArr].push(str);
     else map[strIndexArr] = [str];
