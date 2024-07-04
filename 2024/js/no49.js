@@ -6,6 +6,22 @@
  * @return {string[][]}
  */
 const groupAnagrams = (strs) => {
+  return map(strs);
+};
+/**
+ * sort
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+const sort = (strs) => {
+
+};
+/**
+ * hash map
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+const map = (strs) => {
   const map = {};
   strs.forEach((str, index) => {
     let strArr = str.split('');
@@ -19,4 +35,5 @@ const groupAnagrams = (strs) => {
   });
   return Object.values(map);
 };
+
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
