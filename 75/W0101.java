@@ -1,7 +1,8 @@
 import java.util.*;
 
-public class W1TwoSum {
+public class W0101 {
     // 试题
+    // leetcode-1
     // https://leetcode.com/problems/two-sum/description/
     public static void main(String[] args) {
         solution(new int[]{2, 7, 11, 15}, 9);
