@@ -7,13 +7,8 @@ public class W0102 {
         System.out.println("result: " + solution_1("{}()[()]"));
     }
 
-    // 双指针
-    public static boolean solution_1(String s) {
-        return s.isEmpty();
-    }
-
     // 堆栈
-    public static boolean solution_2(String s) {
+    public static boolean solution_1(String s) {
         int len = s.length();
         Deque<String> q = new LinkedList<>();
         if (len % 2 != 0) return false;
