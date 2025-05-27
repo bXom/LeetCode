@@ -3,7 +3,8 @@ public class W0105 {
     // leetcode-125
     // https://leetcode.cn/problems/valid-palindrome/description/
     public static void main(String[] args) {
-        System.out.println("result: " + solution_1(l1, l2));
+        System.out.println("result: " + solution_1("a bcc！ba"));
+        System.out.println("result: " + solution_2("a bcc！ba"));
     }
 
     public static boolean solution_1(String s) {
