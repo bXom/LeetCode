@@ -7,6 +7,30 @@ public class W0105 {
     }
 
     public static boolean solution_1(String s) {
+        int indexI = 0;
+        int indexJ = s.length() - 1;
+        do {
+            String i = String.valueOf(s.charAt(indexI)).toLowerCase();
+            if (!i.matches("[a-zA-Z0-9]")) {
+                indexI++;
+                continue;
+            }
+            String j = String.valueOf(s.charAt(indexJ)).toLowerCase();
+            if (!j.matches("[a-zA-Z0-9]")) {
+                indexJ--;
+                continue;
+            }
+            if (i.equals(j)) {
+                indexI++;
+                indexJ--;
+            } else {
+                return false;
+            }
+        } while (indexI < indexJ);
+        return true;
+    }
+
+    public static boolean solution_2(String s) {
         s = s.toLowerCase();
         s = s.replaceAll("[^a-zA-Z0-9]", "");
         int len = s.length();
