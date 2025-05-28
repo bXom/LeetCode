@@ -3,17 +3,19 @@ public class W0106 {
     // leetcode-226
     // https://leetcode.cn/problems/invert-binary-tree/description/
     public static void main(String[] args) {
-        System.out.println("result: " + solution_1());
-        System.out.println("result: " + solution_2());
+        System.out.println("result: " + invertTree(new TreeNode()));
     }
 
-    public static TreeNode solution_1(TreeNode root) {
+    public static TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode left = invertTree(root.left);
+        root.left = invertTree(root.right);
+        root.right = left;
+        return root;
     }
 
-    public static TreeNode solution_2(TreeNode root) {
-    }
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
