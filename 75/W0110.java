@@ -2,12 +2,31 @@ public class W0110 {
     // 试题
     // leetcode-235
     // https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/
+    // 注释：搜索二叉树是有大小顺序的
     public static void main(String[] args) {
         System.out.println("result: " + lowestCommonAncestor(new TreeNode(1), new TreeNode(2), new TreeNode(3)));
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return root;
+        List<TreeNode> pList = new ArrayList<>();
+        List<TreeNode> qList = new ArrayList<>();
+        search(root, p, pList);
+        search(root, q, qList);
+        int minSize = Math.min(pList.size(), qList.size());
+        for (int i = 0; i < minSize; i++) {
+            if (pList.get(i).val != qList.get(i).val) return pList.get(i - 1);
+        }
+        return pList.get(minSize - 1);
+    }
+
+    public static void search(TreeNode root, TreeNode target, List<TreeNode> positionList) {
+        positionList.add(root);
+        if (root.val == target.val) return;
+        if (root.val > target.val) {
+            search(root.left, target, positionList);
+        } else {
+            search(root.right, target, positionList);
+        }
     }
 
     public static class TreeNode {
@@ -20,3 +39,4 @@ public class W0110 {
         }
     }
 }
+
