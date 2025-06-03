@@ -29,6 +29,18 @@ public class W0110 {
         }
     }
 
+    public static TreeNode solution_2(TreeNode root, TreeNode p, TreeNode q) {
+        while (true) {
+            if (root.val > p.val && root.val > q.val) {
+                root = root.left;
+            } else if (root.val < p.val && root.val < q.val) {
+                root = root.right;
+            } else {
+                return root;
+            }
+        }
+    }
+
     public static class TreeNode {
         int val;
         TreeNode left;
