@@ -7,7 +7,20 @@ public class W0111 {
     }
 
     public static boolean isBalanced(TreeNode root) {
+        int depth = depth(root);
+        return depth != -1;
+    }
 
+    public static int depth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDepth = depth(root.left);
+        if (leftDepth == -1) return -1;
+        int rightDepth = depth(root.right);
+        if (rightDepth == -1) return -1;
+        if (leftDepth - rightDepth > 1 || rightDepth - leftDepth > 1) return -1;
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     public static class TreeNode {
