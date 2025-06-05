@@ -7,8 +7,22 @@ public class W0112 {
     }
 
     public static boolean hasCycle(ListNode head) {
-        return hash_solution(head);
+        // return hash_solution(head);
+        return pointer_solution(head);
     }
+
+    public static boolean pointer_solution(ListNode head) {
+        if (head == null || head.next == null) return false;
+        ListNode slowPointer = head;
+        ListNode fastPointer = head.next;
+        while (slowPointer != fastPointer) {
+            if (fastPointer == null || fastPointer.next == null) return false;
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+        }
+        return true;
+    }
+
 
     public static boolean hash_solution(ListNode head) {
         Set<ListNode> set = new HashSet<>();
