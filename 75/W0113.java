@@ -3,30 +3,44 @@ public class W0113 {
     // leetcode-232
     // https://leetcode.cn/problems/implement-queue-using-stacks/
     public static void main(String[] args) {
-        System.out.println("result: " + ("", ""));
+        System.out.println("result: ");
     }
 
     public static class MyQueue {
+        private final Deque<Integer> inQue;
+        private final Deque<Integer> outQue;
 
-    }
+        public MyQueue() {
+            this.inQue = new ArrayDeque<>();
+            this.outQue = new ArrayDeque<>();
+        }
 
-    public void MyQueue() {
+        public void push(int x) {
+            this.inQue.push(x);
+        }
 
-    }
+        public int pop() {
+            if (this.outQue.isEmpty()) {
+                this.in2Out();
+            }
+            return this.outQue.pop();
+        }
 
-    public void push(int x) {
+        public int peek() {
+            if (this.outQue.isEmpty()) {
+                this.in2Out();
+            }
+            return this.outQue.peek();
+        }
 
-    }
+        public void in2Out() {
+            while (!inQue.isEmpty()) {
+                outQue.push(inQue.pop());
+            }
+        }
 
-    public int pop() {
-
-    }
-
-    public int peek() {
-
-    }
-
-    public boolean empty() {
-
+        public boolean empty() {
+            return this.inQue.isEmpty() && this.outQue.isEmpty();
+        }
     }
 }
