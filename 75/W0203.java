@@ -6,7 +6,6 @@ public class W0203 {
         System.out.println("result: " + climbStairs(10));
     }
 
-    // 时间复杂度 O(m+n)
     public static int climbStairs(int n) {
         return 0;
     }
