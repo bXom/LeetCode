@@ -3,30 +3,21 @@ public class W0202 {
     // leetcode-383
     // https://leetcode.cn/problems/ransom-note/
     public static void main(String[] args) {
-        System.out.println("result: " + o2m("aa", "ab"));
+        System.out.println("result: " + oMAndN("aa", "ab"));
     }
 
-    // 时间复杂度 O(2m)
-    public static boolean o2m(String ransomNote, String magazine) {
+    // 时间复杂度 O(m+n)
+    public static boolean oMAndN(String ransomNote, String magazine) {
         int ransomSize = ransomNote.length();
         int magazineSize = magazine.length();
         if (ransomSize > magazineSize) return false;
-        Map<Character, Integer> map = new HashMap<>();
+        int[] map = new int[26];
         for (int i = 0; i < magazineSize; i++) {
-            if (map.containsKey(magazine.charAt(i))) {
-                map.put(magazine.charAt(i), map.get(magazine.charAt(i)) + 1);
-            } else {
-                map.put(magazine.charAt(i), 1);
-            }
-            if (i >= ransomSize) continue;
-            if (map.containsKey(ransomNote.charAt(i))) {
-                map.put(ransomNote.charAt(i), map.get(ransomNote.charAt(i)) - 1);
-            } else {
-                map.put(ransomNote.charAt(i), -1);
-            }
+            map[magazine.charAt(i) - 'a']++;
         }
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if (entry.getValue() < 0) return false;
+        for (int j = 0; j < ransomSize; j++) {
+            map[ransomNote.charAt(j) - 'a']--;
+            if (map[ransomNote.charAt(j) - 'a'] < 0) return false;
         }
         return true;
     }
