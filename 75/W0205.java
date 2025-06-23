@@ -7,7 +7,15 @@ public class W0205 {
     }
 
     public static ListNode reverseList(ListNode head) {
-        return head;
+        ListNode cache = head;
+        ListNode pre = null;
+        while (cache != null) {
+            ListNode next = cache.next;
+            cache.next = pre;
+            pre = cache;
+            cache = next;
+        }
+        return pre;
     }
 
     public static class ListNode {
