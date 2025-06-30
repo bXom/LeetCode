@@ -22,4 +22,9 @@ public class W0206 {
         }
         return 0;
     }
+
+    public static int solution2(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
 }
