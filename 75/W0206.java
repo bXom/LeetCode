@@ -6,6 +6,9 @@ public class W0206 {
         System.out.println("result: " + majorityElement(new int[]{1, 2, 3}));
     }
 
+    // TODO: 分治法
+
+    // 哈希表
     public static int majorityElement(int[] nums) {
         int max = 0;
         Map<Integer, Integer> map = new HashMap<>();
@@ -23,6 +26,7 @@ public class W0206 {
         return 0;
     }
 
+    // 排序后，找到中间位置的值
     public static int solution2(int[] nums) {
         Arrays.sort(nums);
         return nums[nums.length / 2];
