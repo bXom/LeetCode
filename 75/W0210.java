@@ -7,7 +7,39 @@ public class W0210 {
     }
 
     public static int maxDepth(TreeNode root) {
-        return 0;
+        return dfs(root);
+    }
+
+    public static int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    public static int bfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int depth = 0;
+        while (!queue.isEmpty()) {
+            int queueSize = queue.size();
+            while (queueSize-- > 0) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            depth++;
+        }
+        return depth;
     }
 
     public static class TreeNode {
