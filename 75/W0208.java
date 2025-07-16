@@ -7,7 +7,21 @@ public class W0208 {
     }
 
     public static int diameterOfBinaryTree(TreeNode root) {
-        return 0;
+        List<Integer> maxDeep = new ArrayList<>();
+        maxDeep.add(0);
+        search(root, maxDeep);
+        return maxDeep.get(0);
+    }
+
+    public static int search(TreeNode root, List<Integer> maxDeep) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDeep = search(root.left, maxDeep);
+        int rightDeep = search(root.right, maxDeep);
+        int deep = Math.max(leftDeep, rightDeep) + 1;
+        maxDeep.set(0, Math.max(leftDeep + rightDeep, maxDeep.get(0)));
+        return deep;
     }
 
     public static class TreeNode {
