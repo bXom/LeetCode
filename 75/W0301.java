@@ -7,61 +7,34 @@ public class W0301 {
     }
 
     public static int[][] insert(int[][] intervals, int[] newInterval) {
-        if (intervals.length == 0) {
-            return new int[][]{newInterval};
-        }
-        List<int[]> cache = new ArrayList<>();
+        List<int[]> list = new ArrayList<>();
+        int index = 0;
         int size = intervals.length;
-        int mixPoint = 0;
-        boolean mixFlag = false;
-        for (int i = 0; i < size; i++) {
-            int[] cur = intervals[i];
-            if (cur[1] < newInterval[0]) {
-                cache.add(cur);
-                mixPoint++;
+        while (index < size) {
+            int[] cur = intervals[index];
+            if (cur[0] < newInterval[0] && cur[1] < newInterval[0]) {
+                list.add(cur);
+                index++;
                 continue;
-            }
-            if (cur[0] > newInterval[1]) {
-                cache.add(newInterval);
-                cache.add(cur);
-                mixPoint++;
-                mixFlag = true;
             }
             break;
         }
-        if (mixFlag) {
-            return insertRemain(intervals, mixPoint, cache);
-        } else if (mixPoint == size) {
-            cache.add(newInterval);
-        } else {
-            int[] mixInterval = new int[]{intervals[mixPoint][0], intervals[mixPoint][1]};
-            if (mixInterval[0] > newInterval[0]) {
-                mixInterval[0] = newInterval[0];
+        while (index < size) {
+            int[] cur = intervals[index];
+            if (newInterval[1] >= cur[0]) {
+                newInterval[0] = Math.min(newInterval[0], cur[0]);
+                newInterval[1] = Math.max(newInterval[1], cur[1]);
+                index++;
+            } else {
+                break;
             }
-            if (mixInterval[1] < newInterval[1]) {
-                mixInterval[1] = newInterval[1];
-            }
-            for (int i = mixPoint + 1; i < size; i++) {
-                int[] cur = intervals[i];
-                if (mixInterval[1] >= cur[0] && mixInterval[1] <= cur[1]) {
-                    mixInterval[1] = cur[1];
-                    cache.add(mixInterval);
-                    return insertRemain(intervals, i + 1, cache);
-                } else if (mixInterval[1] < cur[0]) {
-                    cache.add(mixInterval);
-                    cache.add(cur);
-                    return insertRemain(intervals, i + 1, cache);
-                }
-            }
-            cache.add(mixInterval);
         }
-        return cache.toArray(new int[cache.size()][]);
-    }
-
-    public static int[][] insertRemain(int[][] intervals, int point, List<int[]> cache) {
-        for (int i = point; i < intervals.length; i++) {
-            cache.add(intervals[i]);
+        list.add(newInterval);
+        while (index < size) {
+            int[] cur = intervals[index];
+            list.add(cur);
+            index++;
         }
-        return cache.toArray(new int[cache.size()][]);
+        return list.toArray(new int[list.size()][]);
     }
 }
